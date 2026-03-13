@@ -95,6 +95,12 @@
         .btn-enviar:hover {
             background-color: #128c7e;
         }
+        .creador {
+            font-size: 0.7em;
+            color: #aaa;
+            text-align: right;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -110,6 +116,24 @@
         </div>
 
         <div class="icono-deporte"></div>
+
+        <!-- Nueva sección para el tipo de deporte y la categoría -->
+        <table class="tabla-principal" style="margin-bottom: 20px;">
+            <tr class="fila-encabezado">
+                <td style="width: 50%;">
+                    <label>DEPORTE</label>
+                    <input type="text" class="campo-fijo" value="Futsal" readonly>
+                </td>
+                <td style="width: 50%;">
+                    <label for="categoria">CATEGORÍA</label>
+                    <select id="categoria" class="campo-editable" style="width: 100%; border: none; border-bottom: 1px solid black; padding: 2px 0; background: transparent; font-size: 1em;">
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <!-- Fin de la nueva sección -->
 
         <table class="tabla-principal">
             <tr class="fila-encabezado">
@@ -159,7 +183,6 @@
             </tr>
             <tr>
                 <td><input type="text" class="campo-fijo" value="5." readonly></td>
-                <td><input type="text" class="campo-editable" id="jug5Nom" required></td>
                 <td><input type="number" class="campo-editable" id="jug5Edad" min="5" max="100" required></td>
                 <td><input type="text" class="campo-editable" id="jug5Cur" required></td>
                 <td><input type="text" class="campo-editable" id="jug5Ti" required></td>
@@ -202,16 +225,26 @@
         </table>
 
         <button class="btn-enviar" onclick="enviarDatos()">ENVIAR DATOS</button>
+
+        <div class="creador">
+            Creador: 1102 J.T.
+        </div>
     </div>
 
     <script>
         function enviarDatos() {
+            // Obtener el valor de la categoría seleccionada
+            let categoriaSeleccionada = document.getElementById('categoria').value;
+
             // Plantilla formateada para WhatsApp
             let mensaje = "📋 *FORMULARIO DE REGISTRO DE EQUIPO*\n";
             mensaje += "🏫 *INSTITUCIÓN:* IED JOSÉ FRANCISCO SOCARRÁS\n";
             mensaje += "📌 *PROYECTO:* Aprovechamiento del Tiempo Libre - Deporte\n\n";
             
+            // Añadir el Deporte y la Categoría
             mensaje += "⚽ *DATOS DEL EQUIPO:*\n";
+            mensaje += "• Deporte: Futsal\n";
+            mensaje += "• Categoría: " + categoriaSeleccionada.charAt(0).toUpperCase() + categoriaSeleccionada.slice(1) + "\n"; // Pone la primera letra en mayúscula
             mensaje += "• Capitán: " + document.getElementById('capitan').value + "\n";
             mensaje += "• Color del Uniforme: " + document.getElementById('colorUniforme').value + "\n\n";
             
@@ -229,7 +262,8 @@
                 mensaje += i + ".  | " + nom + " | " + edad + " | " + curso + " | " + ti + "\n";
             }
             mensaje += "-------------------------------------------------\n";
-            mensaje += "✅ *Datos enviados desde el formulario oficial*";
+            mensaje += "✅ *Datos enviados desde el formulario oficial*\n";
+            mensaje += "✨ Creador: 1102 J.T."; // Añadir el creador al final del mensaje de WhatsApp
 
             // Codificar mensaje y abrir WhatsApp
             let mensajeCodificado = encodeURIComponent(mensaje);
