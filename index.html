@@ -20,27 +20,12 @@
             box-shadow: 0 0 8px rgba(0,0,0,0.1);
             position: relative;
         }
-        .logo {
-            width: 60px;
-            height: 60px;
-            background-color: #333;
-            border-radius: 50%;
-            position: absolute;
-            top: 25px;
-            right: 25px;
-        }
+        
+        /* Ajuste del encabezado-texto para que esté centrado ahora que no hay logo */
         .encabezado-texto {
-            margin-right: 80px;
+            text-align: center; 
             line-height: 1.3;
             margin-bottom: 30px;
-        }
-        .icono-deporte {
-            width: 60px;
-            height: 50px;
-            background-color: #333;
-            position: absolute;
-            bottom: 25px;
-            right: 25px;
         }
         .tabla-principal {
             width: 100%;
@@ -105,7 +90,7 @@
 </head>
 <body>
     <div class="documento">
-        <div class="logo"></div>
+        <!-- Eliminados completamente los div "logo" e "icono-deporte" -->
 
         <div class="encabezado-texto">
             <p>IED JOSÉ FRANCISCO SOCARRÁS</p>
@@ -115,9 +100,7 @@
             <p>ÁREA DE EDUCACIÓN FÍSICA</p>
         </div>
 
-        <div class="icono-deporte"></div>
-
-        <!-- Nueva sección para el tipo de deporte y la categoría -->
+        <!-- Sección para el tipo de deporte y la categoría -->
         <table class="tabla-principal" style="margin-bottom: 20px;">
             <tr class="fila-encabezado">
                 <td style="width: 50%;">
@@ -133,7 +116,6 @@
                 </td>
             </tr>
         </table>
-        <!-- Fin de la nueva sección -->
 
         <table class="tabla-principal">
             <tr class="fila-encabezado">
@@ -183,6 +165,7 @@
             </tr>
             <tr>
                 <td><input type="text" class="campo-fijo" value="5." readonly></td>
+                <td><input type="text" class="campo-editable" id="jug5Nom" required></td>
                 <td><input type="number" class="campo-editable" id="jug5Edad" min="5" max="100" required></td>
                 <td><input type="text" class="campo-editable" id="jug5Cur" required></td>
                 <td><input type="text" class="campo-editable" id="jug5Ti" required></td>
@@ -267,7 +250,7 @@
 
             // Codificar mensaje y abrir WhatsApp
             let mensajeCodificado = encodeURIComponent(mensaje);
-            let numero = "573133604710";
+            let numero = "573133604710"; // Confirmado, este es el número al que se enviará
             window.open("https://wa.me/" + numero + "?text=" + mensajeCodificado, '_blank');
         }
     </script>
